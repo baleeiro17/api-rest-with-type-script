@@ -23,7 +23,8 @@ class UserRespository {
             });
     }
 
-    public async create(input: DocumentDefinition<UserModel>): Promise<UserModel> {
+    public async create(input: UserModel): Promise<UserModel> {
+        
         return User.create(input)
             .then((data: UserModel ) => {
                 return data;
