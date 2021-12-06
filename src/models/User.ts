@@ -1,5 +1,6 @@
 import { UserInterface } from '../interfaces/User';
 import mongoose, { model, Document} from 'mongoose';
+import crypto from "crypto";
 
 export interface UserModel extends UserInterface, Document {
     fullName(): string;
@@ -28,6 +29,10 @@ const UserSchema = new mongoose.Schema({
     }
 }, {
     timestamps: true
+});
+
+UserSchema.pre('save', function() {
+    this.password = crypto.createHmac("sha256", this.password).digest("hex");
 });
 
 UserSchema.methods.fullName = function (): string {

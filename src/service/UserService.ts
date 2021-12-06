@@ -7,7 +7,7 @@ class UserService {
     public async getUser(id: string): Promise<UserDto | null> {
 
         // call repository functions
-        const user = await UserRepository.getUser(id);
+        const user = await UserRepository.getUserById(id);
         if (user != null) {
             // transform to UserModel to UserDto
             return new UserDto(user);

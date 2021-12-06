@@ -3,8 +3,31 @@ import User, { UserModel } from '../models/user';
 
 class UserRespository {
 
-    public async getUser(id: string): Promise<UserModel | null> {
+    public async getUserById(id: string): Promise<UserModel | null> {
         return User.findById(id)
+            .then((data: UserModel | null) => {
+                return data;
+            })
+            .catch((error: Error) => {
+                throw error;
+            });
+    }
+
+    public async getUserByEmail(email: string): Promise<UserModel | null> {
+        return User.findOne({email: email})
+            .then((data: UserModel | null) => {
+                return data;
+            })
+            .catch((error: Error) => {
+                throw error;
+            });
+    }
+
+    public async getUserByEmailAndPass(email: string, pass: string): Promise<UserModel | null> {
+        return User.findOne({
+            email: email,
+            password: pass,
+            })
             .then((data: UserModel | null) => {
                 return data;
             })

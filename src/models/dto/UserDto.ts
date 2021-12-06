@@ -1,22 +1,25 @@
+import { UserModel } from './../User';
 import { UserInterface } from './../../interfaces/User';
 
 export class UserDto {
 
-    private email: string;
-    private firstName: string;
-    private lastName: string;
-    private password: string;
+    public id: string;
+    public email: string;
+    public firstName: string;
+    public lastName: string;
+    public password: string;
 
-    // create a DTO
-    public constructor(data: UserInterface) {
+    // mappers
+
+    //  mapper for creation of DTO
+    public constructor(data: UserModel) {
+        this.id = data._id;
         this.email = data.email;
         this.firstName = data.firstName;
         this.lastName = data.lastName;
-        // this.password = data.password;
     }
 
-
-    // convert Dto to UserInterface.
+    // mapper for creation of user
     public static convert(data: UserDto): UserInterface {
 
         const User: UserInterface = {
@@ -27,4 +30,5 @@ export class UserDto {
         };
         return User;
     }
+
 }
