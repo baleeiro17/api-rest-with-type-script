@@ -3,7 +3,8 @@ import userRoute from './routes/user';
 import productRoute from './routes/product';
 import authRoute from './routes/auth';
 import mongoose from 'mongoose';
-import { connectionString } from './config/config';
+import configEnv from './config/config';
+import cors from 'cors';
 
 class App {
 
@@ -19,13 +20,14 @@ class App {
     private middlewares (): void {
 
         this.express.use(express.json());
+        this.express.use(cors());
         // setting the cors here
     }
 
     private database (): void {
 
         // connect to mongoodb here
-        mongoose.connect(connectionString).then(()=> {
+        mongoose.connect(configEnv.connString).then(()=> {
             console.log('connected to the database');
         }).catch((err) => {
             console.log('MongoDB connection error. Please make sure MongoDB is running. ' + err)

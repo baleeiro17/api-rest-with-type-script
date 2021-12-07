@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { jwtSecret } from '../config/config';
+import configEnv from '../config/config';
 
 export class JwtMiddleware {
 
@@ -12,7 +12,7 @@ export class JwtMiddleware {
         try {
 
              // validate the token
-            const jwtPayload = jwt.verify(token, jwtSecret);
+            const jwtPayload = jwt.verify(token, configEnv.jwtSecret);
 
             // persist the data (jwt) for the next middleware
             res.locals.jwtPayload = jwtPayload;

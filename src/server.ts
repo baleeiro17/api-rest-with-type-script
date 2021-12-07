@@ -1,3 +1,4 @@
 import app from './app';
+import configEnv from './config/config';
 
-app.listen(3000);
+app.listen(configEnv.portApp);

@@ -1,7 +1,7 @@
 import {Request, Response} from 'express';
 import AuthService from '../service/AuthService';
 import jwt from "jsonwebtoken";
-import { jwtSecret } from '../config/config';
+import configEnv from '../config/config';
 
 class AuthController {
 
@@ -22,8 +22,8 @@ class AuthController {
                 userId: user.id, 
                 username: user.email 
                 },
-                jwtSecret,
-                { expiresIn: "1h" }
+                configEnv.jwtSecret,
+                { expiresIn: configEnv.jwtExpiration }
             );
 
             return res.status(200).json({

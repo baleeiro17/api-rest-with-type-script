@@ -24,8 +24,8 @@ class UserService {
         // transform to UserModel to UserDto
         var usersDto: UserDto[] = new Array(users.length);
 
-        for( let i = 0; i < users.length ; i++ ){
-            usersDto[i] = new UserDto(users[i])
+        for( let i = 0; i < users.length ; i++ ) {
+            usersDto[i] = new UserDto(users[i]);
         }
            
         // transform to UserModel to UserDto
@@ -33,11 +33,11 @@ class UserService {
     }
 
     public async createUser(data: UserDto): Promise<UserDto> {
-        // create User DTO
         
         // call repository functions
         const user = await UserRepository.create(UserDto.convert(data) as UserModel);
         
+        // create User DTO
         return new UserDto(user);
     }
 }
