@@ -9,6 +9,8 @@ export interface UserModel extends UserInterface, Document {
 const UserSchema = new mongoose.Schema({
     email: {
         type: String,
+        unique: true,
+        trim: true,
         required: true
     }, 
     firstName: {
@@ -27,8 +29,8 @@ const UserSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     }
-}, {
-    timestamps: true
+    }, {
+        timestamps: true
 });
 
 UserSchema.pre('save', function() {

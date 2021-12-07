@@ -9,7 +9,7 @@ class UserController {
 
             const user = await UserService.getUser(req.params.id);
             if( user == null ) {
-                return res.status(404).send( {
+                return res.status(404).send({
                     message: "Not found",
                 });
             }
@@ -18,7 +18,7 @@ class UserController {
 
         } catch(e) {
 
-            return res.status(500).send( {
+            return res.status(500).send({
                 message: "Falha ao realizar a requisição",
                 data: e
             });
@@ -35,7 +35,7 @@ class UserController {
 
         } catch(e) {
 
-            return res.status(400).send( {
+            return res.status(400).send({
                 message: "Falha ao realizar a requisição",
                 data: e
             });
@@ -47,12 +47,13 @@ class UserController {
 
         try {
 
+            // TODO: implement some validations.
             const user = await UserService.createUser(req.body);
             return res.status(200).json(user);
 
         } catch(e) {
 
-            return res.status(400).send( {
+            return res.status(400).send({
                 message: "Falha ao realizar a requisição",
                 data: e
             });
